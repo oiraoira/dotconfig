@@ -1,11 +1,10 @@
 #!/usr/bin/env python
-"""This script/module...
+"""This script solves...
 
 """
 
 import sys
 
-import os
 import argparse
 import logging
 
@@ -34,6 +33,8 @@ if __name__ == "__main__":
         default="INFO",
         choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
     )
+    aparser.add_argument("input",
+                         help="Location of the input file")
     args = aparser.parse_args()
 
     # setup logging

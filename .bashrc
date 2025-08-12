@@ -14,6 +14,10 @@ HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
+shopt -s extglob
+shopt -s autocd   2>/dev/null || true
+shopt -s dirspell 2>/dev/null || true
+
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
@@ -39,6 +43,22 @@ fi
 case "$TERM" in
     xterm-color|alacritty|*-256color) color_prompt=yes;;
 esac
+
+
+# Support colors in less
+export LESS_TERMCAP_mb=$(tput bold; tput setaf 1)
+export LESS_TERMCAP_md=$(tput bold; tput setaf 1)
+export LESS_TERMCAP_me=$(tput sgr0)
+export LESS_TERMCAP_se=$(tput sgr0)
+export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4)
+export LESS_TERMCAP_ue=$(tput sgr0)
+export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 2)
+export LESS_TERMCAP_mr=$(tput rev)
+export LESS_TERMCAP_mh=$(tput dim)
+export LESS_TERMCAP_ZN=$(tput ssubm)
+export LESS_TERMCAP_ZV=$(tput rsubm)
+export LESS_TERMCAP_ZO=$(tput ssupm)
+export LESS_TERMCAP_ZW=$(tput rsupm)
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
@@ -88,13 +108,16 @@ if [ -x /usr/bin/dircolors ]; then
     #alias egrep='egrep --color=auto'
 fi
 
+grep --color=auto < /dev/null &>/dev/null && alias grep='grep --color=auto'
+xdg-open --version &>/dev/null && alias open='xdg-open'
+
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
 alias ll='ls -l'
 #alias la='ls -A'
-#alias l='ls -CF'
+alias l='ls -CF'
 alias lt='ls -ltr'
 
 # git shorthand
@@ -124,10 +147,9 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-PATH="$HOME/.local/bin:$PATH"
+PATH="$HOME/.local/bin:$PATH:$HOME/src/PolarisDeployment/core/dev/polaris_runner"
 alias pydsci=/mnt/dvc/dsprojects/base_docker/pydsci.sh
 alias bat=batcat
-source /mnt/dvc/dsprojects/pyenv/base/bin/activate
 # otherwise alacritty term 
 if [ "$TERM" == "alacritty" ]; then
     export TERM=xterm-256color
@@ -135,3 +157,11 @@ fi
 
 export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 export MANROFFOPT="-c"
+
+source $HOME/.dwconn
+source $HOME/.envproj
+source $HOME/.pdev
+source $HOME/.venv/bin/activate
+
+alias pdev='source ~/pdev/bin/activate'
+alias penv='source ~/.venv/bin/activate'
