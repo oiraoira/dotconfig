@@ -147,8 +147,7 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-PATH="$HOME/.local/bin:$PATH:$HOME/src/PolarisDeployment/core/dev/polaris_runner"
-alias pydsci=/mnt/dvc/dsprojects/base_docker/pydsci.sh
+PATH="$HOME/.local/bin:$PATH"
 alias bat=batcat
 # otherwise alacritty term 
 if [ "$TERM" == "alacritty" ]; then
@@ -158,10 +157,7 @@ fi
 export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 export MANROFFOPT="-c"
 
-source $HOME/.dwconn
-source $HOME/.envproj
-source $HOME/.pdev
-source $HOME/.venv/bin/activate
+#source $HOME/.venv/bin/activate
 
-alias pdev='source ~/pdev/bin/activate'
-alias penv='source ~/.venv/bin/activate'
+#alias pdev='source ~/pdev/bin/activate'
+#alias penv='source ~/.venv/bin/activate'
