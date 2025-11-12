@@ -147,17 +147,23 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-PATH="$HOME/.local/bin:$PATH"
-alias bat=batcat
-# otherwise alacritty term 
-if [ "$TERM" == "alacritty" ]; then
-    export TERM=xterm-256color
-fi
 
+# some scripting
+PATH="$HOME/.local/bin:$PATH"
+
+alias bat=batcat
+alias c="cd /mnt/orbit/code"
+
+# colorfull man pages with batcat
 export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 export MANROFFOPT="-c"
 
-#source $HOME/.venv/bin/activate
+# Code playground is in orbit
+export UV_CACHE_DIR="/mnt/orbit/.cache/uv"
+export VIRTUAL_ENV="/mnt/orbit/.venv"
 
-#alias pdev='source ~/pdev/bin/activate'
-#alias penv='source ~/.venv/bin/activate'
+# uv envs
+alias py314="source /mnt/orbit/py314/bin/activate"
+
+# activate this one
+source /mnt/orbit/py314/bin/activate
