@@ -1,20 +1,24 @@
 # Dot Files Config
 
-This repo contains basiclinux system dot files to ease migration.
+This repo contains my basic linux dot files to ease migration between computers
 
  * .bashrc
- * .vimrc and .vim
+ * .vimrc 
+ * .vim
 
 ## Usage
 
 On a fresh system,
 
-* ssh keys
+* install git and ssh
 * clone this repo
-* checkout submodules
-  - git submodules init
-  - git submodules update
-* soft link .bashrc and .vim
-* add third-party package for vim
-  - sudo apt install exuberant-ctags
- 
+
+```bash
+cd dotfiles && ./install.sh
+```
+
+* on debian, add exuberant tags to vim
+
+```bash
+sudo apt install exuberant-ctags
+```
