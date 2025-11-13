@@ -14,7 +14,7 @@ On a fresh system,
 * clone this repo
 
 ```bash
-cd dotfiles && ./install.sh
+cd dotconfig && ./install.sh
 ```
 
 * on debian, add exuberant tags to vim
